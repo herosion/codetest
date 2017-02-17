@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Question;
 use App\Category;
-use Artisan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\QuestionRequest;
@@ -20,7 +19,7 @@ class QuestionsController extends Controller
     public function index()
     {
         //dashboard view
-        $questions = Question::latest('date')->paginate($this->nbPaginate);
+        $questions = Question::latest('date')->with('category')->paginate($this->nbPaginate);
 
         return view('back.question.index', compact('questions', 'nbQuestion'));
     }
@@ -50,7 +49,7 @@ class QuestionsController extends Controller
 
         session()->flash('flashMessage', 'Question bien ajoutée');
 
-        return redirect()->route('admin.index');
+        return redirect()->route('question.index');
     }
 
     /**
@@ -88,6 +87,7 @@ class QuestionsController extends Controller
     public function update(QuestionRequest $request, $id)
     {
         $question = Question::find($id);
+        $question->update( $request->all() );
 
         if(!empty($request->status)) 
         {
@@ -97,11 +97,12 @@ class QuestionsController extends Controller
             $question->status = 'unpublished';
         }
 
-        $question->update( $request->all() );
+        $question->save();
+        
         /*dump($request->status); die;*/
         session()->flash('flashMessage', 'Mise à jour réussie');
 
-        return redirect()->route('admin.index');
+        return redirect()->route('question.index');
     }
 
     /**
@@ -112,14 +113,9 @@ class QuestionsController extends Controller
      */
     public function destroy($id)
     {
-         $exitCode = Artisan::call('cache:clear');
-         
         Question::destroy($id);
         
-       
-        //Flashmessage de confirmation
-        session()->flash('flashMessage', 'Question supprimée');
-        //Redirection sur l'index
-        return redirect()->route('admin.index');
+        return $id;
     }
+
 }

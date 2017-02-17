@@ -6,11 +6,11 @@
 <nav>
   <div class="nav-wrapper #1976d2 blue darken-2"> <!-- #1976d2 blue darken-2 -->
     @if(auth()->check())
-    <a href="{{ route('admin.index') }}" class="brand-logo">Code tests <small>(Admin - {{$admin->username }})</small></a>
+    <a href="{{ route('question.index') }}" class="brand-logo">Code tests <small>(Admin - {{$admin->username }})</small></a>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
       <li><a href="{{ route('home') }}">Home</a></li>
-      <li><a href="{{ route('admin.index')}}">Dashboard</a></li>
+      <li><a href="{{ route('question.index')}}">Dashboard</a></li>
       <li><a href="{{ route('logout') }}">Log out</a></li>
     </ul>
     @else
@@ -25,7 +25,7 @@
 
     <ul class="side-nav" id="mobile-demo">
       @if(auth()->check())
-      <li><a href="">Dashboard</a></li>
+      <li><a href="{{ route('question.index')}}">Dashboard</a></li>
       <li><a href="{{ route('logout') }}">Log out</a></li>
       @else
       @foreach ($categories as $category)
@@ -47,7 +47,7 @@
     <div class="modal-content">
       <div class="input-field">
           <i class="material-icons prefix">account_circle</i>
-          <input id="email" name="email" type="email" class="validate">
+          <input id="email" name="email" type="email" class="validate" value="{{ old('email') }}">
           <label for="email" data-error="wrong" data-success="right">Identifiant</label>
           @if($errors->has('email')) <span>{{$errors->first('email')}}</span>@endif
       </div>

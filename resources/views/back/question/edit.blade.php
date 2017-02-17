@@ -14,7 +14,7 @@
   </div>
   @endif
 </div>
-<form class="col s12" action="{{ route('admin.update', $question->id)}}" method="post" enctype="multipart/form-data">
+<form class="col s12" action="{{ route('question.update', $question->id)}}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }} 
     {{ method_field('PUT') }}
     <div class="section">

@@ -22,15 +22,10 @@
   	    <div class="container">
           @yield('content')
         </div>
-        <footer class="page-footer">
-          @include('partials.footer')
-        </footer>
+
+        @include('partials.footer')
         
 		  </div>
-
-       <!-- <footer class="col s12">
-       	
-       </footer> -->
 	
 	   <script
          src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -51,11 +46,11 @@
         $('.modal').modal({opacity: .7});
 		    $('.flash').delay(1000).css({
            position: 'fixed',
-           top: '45%',
-           left: '40%',
+           top: '46%',
+           left: '42%',
            width: '15%',
            height: '50px',
-           backgroundColor: '#000',
+           backgroundColor: '#ffa726',
            display: 'flex',
            textAlign: 'center',
            alignItems: 'center',

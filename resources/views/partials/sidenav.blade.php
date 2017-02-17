@@ -21,7 +21,7 @@
 <!-- <div class="section">
     <div class="row">
         <div class="col m12 s6 offset-s1 ">
-            <span> Add question </span><a class="btn-floating btn waves-effect waves-light #42a5f5 blue lighten-1" href="{{ route('admin.create')}}"><i class="material-icons">add</i></a>
+            <span> Add question </span><a class="btn-floating btn waves-effect waves-light #42a5f5 blue lighten-1" href="{{ route('question.create')}}"><i class="material-icons">add</i></a>
         </div>
     </div>
 </div>

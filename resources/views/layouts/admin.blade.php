@@ -42,17 +42,18 @@
 
       'use strict';
 
-      $( document ).ready(function(){
-
-        $('.ben').material_select();
-        
-        $('.modal').modal();
+    $( document ).ready(function(){
 
         let id = 0;
         let id_f = 0;
         let lien = '';
         let lien_f = '';
+        let l = '';
         let token = '';
+
+        $('.ben').material_select();
+        $('.button-collapse').sideNav();
+        $('.modal').modal();
 
         $('.supr').on('click', function(){ //au click sur icone supprimer
           $(this).each(function(){
@@ -61,16 +62,14 @@
             $('.dlt').attr('data-id', id); //ajout attribut data-id avec la valeur de l'id de la question
             id_f = $('.dlt').attr('data-id');
 
-            lien = $(this).data('href'); //id de la question
-            $('.dlt').attr('data-href', lien); //ajout attribut data-id avec la valeur de l'id de la question
+            lien = $(this).data('href');
+            //lien = encodeURIComponent(l);
+            $('.dlt').attr('data-href', lien); 
             lien_f = $('.dlt').attr('data-href');
           });
         });
 
         $('.dlt').on('click', function(){ 
-
-          console.log(id_f);
-          console.log(lien_f);
 
           $.ajax({
               url: lien_f,
@@ -79,16 +78,41 @@
               data: {
                   '_token': $('input[name="_token"]').val(),
                   'id': id_f,
-                  /*'_method': $('input[name="_method"]').val()*/
+                  '_method': 'DELETE'
+              },
+              success: function(data) {
+                 $('#question-' + data).fadeOut(500, function(){
+                    
+                    $('.flash').text('Question bien supprimée').fadeIn(1000, function(){
+                      $(this).fadeOut(1000);
+                      });
+                });
+              },
+              error: function(){
+                  alert('La requête n\'a pas abouti'); 
               }
-          })
+          });
 
         });
         
+        $('.flash').delay(1000).css({
+           position: 'fixed',
+           top: '46%',
+           left: '42%',
+           width: '15%',
+           height: '50px',
+           backgroundColor: '#ffa726',
+           display: 'flex',
+           textAlign: 'center',
+           alignItems: 'center',
+           color: '#fff',
+           fontWeight: '800',
+           borderRadius: '10px',
+           zindex: '50'
+        }).fadeOut(1000);
 
 
-
-       let id_dlt = 0;
+       /*let id_dlt = 0;
 
         $('input[name="status"]').on('click', function(){
 
@@ -101,28 +125,11 @@
           }
 
 
-        });
+        });*/
 
-    
-
-
-
-
-       $('.flash').delay(1000).css({
-           position: 'fixed',
-           top: '45%',
-           left: '40%',
-           width: '15%',
-           height: '50px',
-           backgroundColor: '#000',
-           display: 'flex',
-           textAlign: 'center',
-           alignItems: 'center',
-           color: '#fff',
-           fontWeight: '800',
-           borderRadius: '10px'
-        }).fadeOut(1000);
-      });
+  
+       
+    });
       
       
     </script>

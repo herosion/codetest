@@ -10,7 +10,7 @@ class FrontController extends Controller
 {
     public function index(){
 
-        $questions = Question::Status()->latest('date')->paginate($this->nbPaginate);
+        $questions = Question::Published()->with('category')->paginate($this->nbPaginate);
 
     	return view('front.index', compact('questions'));
     }

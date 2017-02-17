@@ -13,7 +13,7 @@
   </div>
   @endif
 </div>
-<form class="col s12" action="{{ route('admin.store') }}" method="post" enctype="multipart/form-data">
+<form class="col s12" action="{{ route('question.store') }}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }} 
     <div class="section">
       <div class="row">

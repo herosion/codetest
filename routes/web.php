@@ -23,5 +23,5 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function(){
 
-    Route::resource('admin', 'Admin\QuestionsController'); //permet d'acceder à toutes les méthodes du controller RobotController ayant la ressource*/
+    Route::resource('question', 'Admin\QuestionsController'); //permet d'acceder à toutes les méthodes du controller RobotController ayant la ressource*/
 });

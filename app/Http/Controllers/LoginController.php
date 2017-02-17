@@ -33,7 +33,7 @@ class LoginController extends Controller
            /*dump('ok connexion réussie!');*/
           session()->flash('flashMessage', 'Connection réussie');
 
-           return redirect()->intended('dashboard/admin');
+           return redirect()->intended('dashboard/question');
            
         }else{
           
