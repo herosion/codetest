@@ -50,12 +50,20 @@
         let lien_f = '';
         let l = '';
         let token = '';
+        let name = '';
+        let status = '';
 
         $('.ben').material_select();
         $('.button-collapse').sideNav();
         $('.modal').modal();
 
         $('.supr').on('click', function(){ //au click sur icone supprimer
+          name = $(this).attr('data-title');
+
+          $('.title-dlt').append('<h5>Voulez-vous supprimer la question '+ name +'?</h5>');
+
+          $('.title-dlt h5').prev().remove();
+
           $(this).each(function(){
 
             id = $(this).data('id'); //id de la question
@@ -87,6 +95,7 @@
                       $(this).fadeOut(1000);
                       });
                 });
+
               },
               error: function(){
                   alert('La requête n\'a pas abouti'); 
@@ -112,23 +121,24 @@
         }).fadeOut(1000);
 
 
-       /*let id_dlt = 0;
+        /*$('.filled-in').on('click', function(){ //au click sur icone supprimer
+          status = $(this).attr('value');
 
-        $('input[name="status"]').on('click', function(){
+          console.log(status);
 
-          $(this).toggleClass('filled-in');
+         $(this).each(function(){
 
-          if ($(this).is('.filled-in')) {
+            var id = $(this).data('id'); //id de la question
+            $('.dlt').attr('data-id', id); //ajout attribut data-id avec la valeur de l'id de la question
+            id_f = $('.dlt').attr('data-id');
 
-              id_dlt = $(this).attr('id'); 
-              console.log(id_dlt);
-          }
-
-
+            l = $(this).data('href');
+            lien = encodeURIComponent(l);
+            $('.dlt').attr('data-href', lien); 
+            lien_f = $('.dlt').attr('data-href');
+          });
         });*/
-
   
-       
     });
       
       

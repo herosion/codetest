@@ -25,7 +25,7 @@
 		      <th data-field="category">Category</th>
 		      <th data-field="date">Date</th>
 		      <th data-field="action">Action</th>
-		      <th data-field="action">Publication</th>
+		      <th data-field="action"><a href="" >Publication</a></th>
 		  </tr>
 		</thead>
 		
@@ -38,15 +38,13 @@
 		   	<td>{{ $question->date}}</td>
 		   	<td>
 		   		<a class="waves-effect waves-light btn-small " href="{{ route('question.edit', $question->id) }}"><i class="material-icons">edit</i></a>
-		   		<a class="waves-effect waves-light btn-small supr" href="#modal2" data-id="{{ $question->id }}" data-href="{{route('question.destroy', $question->id)}}"><i class="material-icons">delete</i></a>
+		   		<a class="waves-effect waves-light btn-small supr" href="#modal2" data-id="{{ $question->id }}" data-title="{{ $question->title }}" data-href="{{route('question.destroy', $question->id)}}"><i class="material-icons">delete</i></a>
 		   	</td>
 		   	<td>
-			  @if($question->status != 'published')
 		      <p>
-	            <input class="filled-in" type="checkbox" name="status" value="{{  $question->id  }}" id="{{  $question->id  }}"/>
+	            <input class="filled-in" type="checkbox" name="status" value="{{  $question->status  }}" id="{{  $question->id  }}"/>
 	            <label for="{{  $question->id  }}"></label>
 	          </p>
-			  @endif
 		   	</td>
 		  </tr>
 		@endforeach
@@ -56,9 +54,9 @@
 	</div>
 </div>
 
-<div id="modal2" class="modal">
-	<div class="modal-content">
-  		<h5>Voulez-vous supprimer la question {{$question->title }} ?</h5>
+<div id="modal2" class="modal ">
+	<div class="modal-content title-dlt">
+  		
 	</div>
 	<div class="modal-footer">
 		<a type="submit" name="action" class="modal-action modal-close waves-effect btn-flat dlt">oui</a>

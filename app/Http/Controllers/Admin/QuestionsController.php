@@ -112,9 +112,9 @@ class QuestionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   
         Question::destroy($id);
-        
+    
         return $id;
     }
 
